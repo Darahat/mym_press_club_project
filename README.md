@@ -1,0 +1,1 @@
+# mym_press_club_project
