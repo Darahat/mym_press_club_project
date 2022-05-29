@@ -5,7 +5,7 @@
         </v-card>
         <v-container>
             <v-main>
-                <v-card class="d-flex align-center justify-center pa-6">
+                <v-card class="  pa-6">
                     <router-view></router-view>
                 </v-card>
             </v-main>

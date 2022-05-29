@@ -20,10 +20,10 @@
 //             this.property = 'Mymensingh Press Club'
 
 //         },
-//         created() {
-//             alert("Hello Everyone.I am Created");
-//             this.property = 'Mymensingh Press Club'
-//         },
+        created() {
+            // alert("Hello Everyone.I am Created");
+            this.property = 'Mymensingh Press Club'
+        },
 //         beforeMount() {
 //             alert("Hello Everyone.I am beforeMount");
 //         },

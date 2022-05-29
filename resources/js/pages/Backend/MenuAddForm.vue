@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-         <detailsAdd 
+    <div>
+         <detailsAddForm 
             :title="title"
             :subTitle="subTitle"
             :isMenuForm="isMenuForm"
@@ -8,12 +8,12 @@
             :isSubmenuForm="isSubmenuForm"
             :data="data"
             />
-    </v-app>
+    </div>
 </template>
 <script>
-import detailsAddForm from '../../components/Backend/detailsAddForm.vue';
+
     export default {
-  components: { detailsAddForm },
+ 
 
 
         data() {

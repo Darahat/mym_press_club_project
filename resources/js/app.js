@@ -11,7 +11,7 @@ window.Vue = require('vue').default;
 import router from './router';
 import App from './layouts/App.vue';
 import vuetify from './vuetify';
-import richTextEditor from 'rich-text-editor-vuetify';
+import VueEditor  from "vue2-editor";
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,16 +20,14 @@ import richTextEditor from 'rich-text-editor-vuetify';
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
-// const files = require.context('./', true, /\.vue$/i)
+ // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.use(richTextEditor);
+Vue.use(VueEditor)
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/Frontend/Navbar.vue').default);
-Vue.component('detailsAdd', require('./components/Backend/DetailsAddForm.vue').default);
+Vue.component('detailsAddForm', require('./components/Backend/DetailsAddForm.vue').default);
 Vue.component('carousel', require('./components/Frontend/Carousel.vue').default);
-
-/**
+ /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
@@ -37,7 +35,7 @@ Vue.component('carousel', require('./components/Frontend/Carousel.vue').default)
 
 const app = new Vue({
     router,
-    vuetify,richTextEditor,
+    vuetify,
     el: '#app',
     render: h => h(App)
 });
