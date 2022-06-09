@@ -10,7 +10,7 @@
                 {{title}}
             </v-card-title>
             <v-card-subtitle>{{subTitle}}</v-card-subtitle>
-            <form ref="form" lazy-validation @submit.prevent="submit" enctype="multipart/form-data">
+            <form ref="form" lazy-validation @submit.prevent="submit" enctype="multipart/form-data" action="post">
                 <v-container class="grey lighten-5">
                     <v-row no-gutters>
                         <v-col   cols="12" sm="6" class="px-2" >

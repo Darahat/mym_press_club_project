@@ -71,7 +71,9 @@ if($success){
      */
     public function show($name)
     {
+         
         return Menu::where('name', $name)->get();
+
 
     }
 

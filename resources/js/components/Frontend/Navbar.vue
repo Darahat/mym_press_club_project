@@ -1,17 +1,28 @@
 <template>
     <nav>
-        <v-toolbar text>
-            <v-toolbar-title class="text-uppercase grey--text">
+        <v-toolbar text class="dense">
+            <v-toolbar-side-icon>
+          <v-img class="mr-3" height="40" width="40"
+                        src="/storage/images/others/logo.png"/>
+    </v-toolbar-side-icon> 
+            <v-toolbar-title class="text-uppercase black--text">
+            
+              
+
+                        
                 <span>{{property}}</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <a style="text-decoration: none;" href="/"> <v-btn text color="grey"  >  Home</v-btn></a>
+            <a style="text-decoration: none;" href="/"> <v-btn text color="black"  >  Home</v-btn></a>
                 
             <div v-for="item in menues" :key="item.id" link>
                 <router-link style="text-decoration: none;" data-toggle="collapse" :to="{
-                path: item.name,
-                }">
-                    <v-btn text color="grey">{{ item.name }}</v-btn>
+                 name: 'detailsPageOne',
+                params: {
+                  token: item.name,
+                }}"
+               >
+                    <v-btn text color="black">{{ item.name }}</v-btn>
                 </router-link>
             </div>
         </v-toolbar>
@@ -42,7 +53,7 @@
             }
         },
         created() {
-               this.property = 'Mymensingh Press Club'
+               this.property = 'ময়মনসিংহ প্রেসক্লাব'
             window.axios.get('/api/menus').then(res => {
                 console.log(res.data);
                 this.menues = res.data

@@ -4,7 +4,7 @@
 <v-card-title class="text-h5">
               <v-btn class="btn btn-primary">
                             <router-link style="text-decoration:none;margin:2px" data-toggle="collapse" :to="{
-                path: '/bannerform',
+                name: 'bannerForm',
                  }">
                                 New Banner Add
                             </router-link>

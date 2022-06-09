@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +23,22 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $validatedData = $request->validate([
+            'name'    => 'required',
+            'designation'   => 'required',
+            
+      ]);
+        $input =$request->all();
+        if ($image = $request->file('image')) {
+        $destinationPath = 'storage/images/banner';
+        $ImageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        $image->move($destinationPath, $ImageName);
+        $input['image'] = "$ImageName";
+        }
+        $success=Banner::create($input);
+     return $success;
+       
+     
     }
 
     /**

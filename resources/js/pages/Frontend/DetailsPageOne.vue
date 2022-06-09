@@ -2,6 +2,7 @@
     <v-layout v-if="details">
         <v-flex xs12 sm12 offset-sm0>
             <v-card flat>
+               
                 <div v-for="detail in details" :key="detail.id">
                     <v-img class="animated fadeInRightBig white--text" height="400px"
                         :src="'/storage/images/menus/'+detail.image">
@@ -43,6 +44,7 @@
         created() {
 
             this.routevalue = this.$route.params.token;
+            console.log(this.routevalue);
             window.axios.get('api/menu/show/' + this.routevalue).then(res => {
                 console.log(res.data);
                 this.details = res.data
