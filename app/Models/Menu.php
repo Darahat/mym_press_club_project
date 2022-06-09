@@ -17,5 +17,7 @@ class Menu extends Model
         'Document3',
         'created_at',
         'updated_at',
+        'image',
+        
         ];
 }

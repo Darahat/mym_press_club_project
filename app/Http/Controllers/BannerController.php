@@ -6,44 +6,19 @@ use Illuminate\Support\Facades\DB;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function index()
     {
         return Banner::all();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
-    // return request::all();
-    // exit;
-    // $this->validate($request, [
-    // 'title' => 'required',
-    // 'description' => 'required'
-    // ]);
-    
- 
-     
-
       $validatedData = $request->validate([
         'title'    => 'required',
         'description'   => 'required',
@@ -58,60 +33,40 @@ class BannerController extends Controller
     $success=Banner::create($input);
  return $success;
    
-//     if($success){
-//         $notification = array(
-//        'status' => 'Student Discount Information Saved Successfully',
-//        'alert-type' => 'success');
-//      return redirect("admin/erp/studentFeeList")->with($notification);
-//    }else{
-//         $notification = array(
-//        'status' => 'Student Discount Information Saved Unsuccessful',
-//        'alert-type' => 'error');
-//      return redirect("admin/erp/studentFeeList")->with($notification);
-//    }
-   
+ 
 } 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function edit($id)
     {
-        //
+        return Banner::where('id', $id)->get();
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
-        //
+    $validatedData = $request->validate([
+        'title'    => 'required',
+        'description'   => 'required',
+        'image' => 'required',
+  ]);
+  $input =$request->all();
+  if ($image = $request->file('image')) {
+  $destinationPath = 'storage/images/banner';
+  $ImageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+  $image->move($destinationPath, $ImageName);
+  $input['image'] = "$ImageName";
+  }
+  $success=Banner::where('id', $id)->update($input);
+ return $success;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy($id)
     {
         //

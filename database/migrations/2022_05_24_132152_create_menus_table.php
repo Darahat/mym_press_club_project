@@ -21,7 +21,8 @@ class CreateMenusTable extends Migration
             $table->longText('Document1');
             $table->longText('Document2');
             $table->longText('Document3');
-            $table->timestamps();
+            $table->longText('image');
+            $table->timestamps();  
         });
     }
 

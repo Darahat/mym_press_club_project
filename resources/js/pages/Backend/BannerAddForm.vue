@@ -73,11 +73,7 @@ import router from '../../router';
                                    currentObj.output = error;
                                    alert(error);
                                  });
-                //  if(success){
-                //      alert("Success");
-                //  }else{
-                //      alert("failed");
-                //  }
+               
 
             }
         }

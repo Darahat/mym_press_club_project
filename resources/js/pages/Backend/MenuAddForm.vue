@@ -13,9 +13,6 @@
 <script>
 
     export default {
- 
-
-
         data() {
             return {
                 title:"Add Menu Form",
@@ -25,12 +22,13 @@
                 isSubmenuForm:false,
                 snackbar: false,
                 data:{
-                'name':'',
-                'hasChildMenu':'',
-                'externalLink':'',
-                'Document1':'',
-                'Document2':'',
-                'Document3':'',
+                    image: {},
+                    hasChildMenu: 0,
+                    externalLink: 0,
+                    Document1: '',
+                    Document2: '',
+                    Document3: '',
+                    name: '',
                 },
                 props: {
                     route: String
@@ -38,7 +36,7 @@
                 csrf: document.head.querySelector('meta[name="csrf-token"]').content,
                  menu: {
                     title: '',
-                    description: '',
+                    Document: '',
                     image: {},
                 },
                 edit: false,
@@ -56,9 +54,14 @@
                           e.preventDefault();
                           let currentObj = this;
                           var formData = new FormData();
-                          formData.append('image', this.menu.image);
-                          formData.append('description',this.menu.description);
-                          formData.append('title', this.menu.title);
+                          formData.append('image', this.mendatau.image,this.mendatau.image.name);
+                          formData.append('hasChildMenu',this.data.hasChildMenu);
+                          formData.append('externalLink', this.data.externalLink);
+                          formData.append('Document1', this.data.Document1);
+                          formData.append('Document2',this.data.Document2);
+                          formData.append('Document3', this.data.Document3);
+                          formData.append('name', this.data.name);
+                           
                           axios.post('api/menu/store', formData)
                               .then((response) => {
                                   currentObj.output = response.data;

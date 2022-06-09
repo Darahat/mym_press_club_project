@@ -6,17 +6,21 @@ import About from './pages/About.vue';
 import BannerForm from './pages/Backend/BannerAddForm.vue';
 import BannerList from './pages/Backend/BannerList.vue';
 import Details from './pages/Details.vue';
-import Edit from './pages/Backend/BannerEditForm.vue';
+import BannerEditForm from './pages/Backend/BannerEditForm.vue';
 import MenuForm from './pages/Backend/MenuAddForm.vue';
+import DetailsPageOne from './pages/Frontend/DetailsPageOne.vue';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
+    base: process.env.BASE_URL,
     routes: [{
             path: '/',
             name: 'home',
-            component: Home
+            component: Home,
+            
         },
         {
             path: '/about',
@@ -24,14 +28,25 @@ const router = new VueRouter({
             component: About
         },
         {
-            path: '/banner/list',
+            path: '/admin/banner/list',
             name: 'bannerList',
             component: BannerList
         },
+        
         {
-            path: '/bannerform',
+            path: '/admin/banner/bannerEditForm',
+            name: 'bannerEditForm',
+            component: BannerEditForm
+        },
+        {
+            path: '/admin/banner/bannerform',
             name: 'bannerForm',
             component: BannerForm
+        },
+        {
+            path: '/:token',
+            name: 'detailsPageOne',
+            component: DetailsPageOne
         },
         // {
         //     path: '/menu/list',
@@ -39,10 +54,11 @@ const router = new VueRouter({
         //     component: MenuList
         // },
         {
-            path: '/menuform',
+            path: '/admin/menu/menuform',
             name: 'menuForm',
             component: MenuForm
         },
+        
         // {
         //     path: '/subMenu/list',
         //     name: 'subMenuList',
@@ -54,15 +70,15 @@ const router = new VueRouter({
         //     component: subMenuForm
         // },
         {
-            path: '/details',
+            path: '/admin/details',
             name: 'details',
             component: Details
         },
-        {
-            path: '/edit',
-            name: 'edit',
-            component: Edit
-        },
+        // {
+        //     path: '/edit',
+        //     name: 'edit',
+        //     component: Edit
+        // },
         {
             path: '/login',
             name: 'login',

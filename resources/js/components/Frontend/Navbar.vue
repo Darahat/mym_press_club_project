@@ -5,9 +5,13 @@
                 <span>{{property}}</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <div v-for="item in items" :key="item.title" link>
-                <router-link style="text-decoration: none;" data-toggle="collapse" :to="{ name: item.route }">
-                    <v-btn text color="grey">{{ item.title }}</v-btn>
+            <a style="text-decoration: none;" href="/"> <v-btn text color="grey"  >  Home</v-btn></a>
+                
+            <div v-for="item in menues" :key="item.id" link>
+                <router-link style="text-decoration: none;" data-toggle="collapse" :to="{
+                path: item.name,
+                }">
+                    <v-btn text color="grey">{{ item.name }}</v-btn>
                 </router-link>
             </div>
         </v-toolbar>
@@ -20,10 +24,7 @@
 //             this.property = 'Mymensingh Press Club'
 
 //         },
-        created() {
-            // alert("Hello Everyone.I am Created");
-            this.property = 'Mymensingh Press Club'
-        },
+      
 //         beforeMount() {
 //             alert("Hello Everyone.I am beforeMount");
 //         },
@@ -36,22 +37,23 @@
             return {
                 property: '',
                 drawer: false,
-                items: [{
-                        title: 'Home',
-                        icon: 'mdi-home-city',
-                        route: 'home'
-                    },
-                    {
-                        title: 'About',
-                        icon: 'mdi-account',
-                        route: 'about'
-                    },
-                    {
-                        title: 'Add Post',
-                        icon: 'mdi-account-group-outline',
-                        route: 'bannerForm'
-                    },
-                ],
+                menues:[],
+               
+            }
+        },
+        created() {
+               this.property = 'Mymensingh Press Club'
+            window.axios.get('/api/menus').then(res => {
+                console.log(res.data);
+                this.menues = res.data
+
+            })
+        },
+        methods:{
+            alertme(route){
+                alert('adf');
+              this.$router.push(route)
+
             }
         }
 

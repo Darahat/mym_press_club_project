@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Menu;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -13,7 +14,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        return Menu::all();
     }
 
     /**
@@ -23,7 +24,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+       
+       
     }
 
     /**
@@ -34,7 +36,31 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+    //     return $request->all();
+    //     exit;
+        $validatedData = $request->validate([
+            'hasChildMenu' => 'required',
+            'externalLink' => 'required',
+            'name' => 'required',
+]);
+$input =$request->all();
+
+if ($image = $request->file('image')) {
+    print_r("hello");
+$destinationPath = 'storage/images/menus';
+$ImageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
+
+$image->move($destinationPath, $ImageName);
+$input['image'] = "$ImageName";
+}
+$success=Menu::create($input);
+if($success){
+    return "success";
+}else{
+    return "failed";
+}
+ 
     }
 
     /**
@@ -43,9 +69,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        return Menu::where('name', $name)->get();
+
     }
 
     /**
