@@ -7,12 +7,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
+ 
 import router from './router';
-import App from './layouts/App.vue';
+import App from './layouts/MainLayout.vue';
 import vuetify from './vuetify';
 import VueEditor  from "vue2-editor";
-
+import store from './store'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,9 +22,13 @@ import VueEditor  from "vue2-editor";
  */
  // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-Vue.use(VueEditor)
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+ 
+Vue.use(VueEditor);
+ Vue.component('AdminLayout', require('./layouts/AdminLayoutComponent.vue').default);
+Vue.component('ClientLayout', require('./layouts/ClientLayoutComponent.vue').default);
 Vue.component('navbar', require('./components/Frontend/Navbar.vue').default);
+Vue.component('adminNavbar', require('./components/Backend/AdminNavbar.vue').default);
+
 Vue.component('detailsAddForm', require('./components/Backend/DetailsAddForm.vue').default);
 Vue.component('carousel', require('./components/Frontend/Carousel.vue').default);
  /**
@@ -32,8 +36,9 @@ Vue.component('carousel', require('./components/Frontend/Carousel.vue').default)
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+ 
 const app = new Vue({
+    store,
     router,
     vuetify,
     el: '#app',

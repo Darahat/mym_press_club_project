@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,10 +36,13 @@ Route::namespace('BannerController')->group(function () {
     Route::get('/menu/edit/{id}', [MenuController::class, 'edit']);
     Route::post('/menu/update/{id}', [MenuController::class, 'update']);
     Route::put('/menu/delete/{id}', [MenuController::class, 'destroy']);
-    Route::get('/subMenus', [subMenuController::class, 'index']);
-    Route::post('/subMenu/store', [subMenuController::class, 'store']);
-    Route::get('/subMenu/show/{id}', [subMenuController::class, 'show']);
-    Route::get('/subMenu/edit/{id}', [subMenuController::class, 'edit']);
-    Route::post('/subMenu/update/{id}', [subMenuController::class, 'update']);
-    Route::put('/subMenu/delete/{id}', [subMenuController::class, 'destroy']);
+    Route::get('/subMenus', [SubMenuController::class, 'index']);
+    Route::post('/subMenu/store', [SubMenuController::class, 'store']);
+    Route::get('/subMenu/show/{id}', [SubMenuController::class, 'show']);
+    Route::get('/subMenu/edit/{id}', [SubMenuController::class, 'edit']);
+    Route::post('/subMenu/update/{id}', [SubMenuController::class, 'update']);
+    Route::put('/subMenu/delete/{id}', [SubMenuController::class, 'destroy']);
+    Route::post('/customLogin', [UserController::class, 'customLogin']);
+    Route::post('/customRegistration', [UserController::class, 'store']);
+    
 });

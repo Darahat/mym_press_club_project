@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './pages/Frontend/HomePageOne.vue';
-import Login from './pages/Frontend/Login.vue';
+import Auth from './pages/Frontend/Login.vue';
 // import About from './pages/About.vue';
 import BannerForm from './pages/Backend/BannerAddForm.vue';
 import BannerList from './pages/Backend/BannerList.vue';
@@ -20,24 +20,28 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+
             
         },
         
         {
             path: '/bannerList',
             name: 'bannerList',
-            component: BannerList
+            component: BannerList,
+            meta: { layout: 'Admin' },
         },
         
         {
             path: '/bannerEditForm',
             name: 'bannerEditForm',
-            component: BannerEditForm
+            component: BannerEditForm,
+            meta: { layout: 'Admin' },
         },
         {
             path: '/bannerform',
             name: 'bannerForm',
-            component: BannerForm
+            component: BannerForm,
+            meta: { layout: 'Admin' },
         },
         {
             path: '/pages/:token',
@@ -52,7 +56,8 @@ const router = new VueRouter({
         {
             path: '/menuform',
             name: 'menuForm',
-            component: MenuForm
+            component: MenuForm,
+            meta: { layout: 'Admin' },
         },
         
         // {
@@ -76,9 +81,9 @@ const router = new VueRouter({
         //     component: Edit
         // },
         {
-            path: '/login',
-            name: 'login',
-            component: Login
+            path: '/auth',
+            name: 'auth',
+            component: Auth
         },
 
     ]

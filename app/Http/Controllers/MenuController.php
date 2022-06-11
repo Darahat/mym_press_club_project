@@ -14,6 +14,7 @@ class MenuController extends Controller
      */
     public function index()
     {
+   
         return Menu::all();
     }
 
@@ -47,7 +48,7 @@ class MenuController extends Controller
 $input =$request->all();
 
 if ($image = $request->file('image')) {
-    print_r("hello");
+  
 $destinationPath = 'storage/images/menus';
 $ImageName = date('YmdHis') . "." . $image->getClientOriginalExtension();
 

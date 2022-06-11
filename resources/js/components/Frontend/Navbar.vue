@@ -1,10 +1,21 @@
+<style>
+.v-toolbar--prominent .v-toolbar__content {
+    align-items: center;
+}
+</style>
 <template>
-    <nav>
-        <v-toolbar text class="dense">
-            <v-toolbar-side-icon>
+     <!-- <v-card
+    color="grey lighten-4"
+    flat
+    height="200px"
+    tile
+  >
+    <v-toolbar extended>
+            <v-toolbar-content>
+            <v-app-bar-nav-icon>
           <v-img class="mr-3" height="40" width="40"
                         src="/storage/images/others/logo.png"/>
-    </v-toolbar-side-icon> 
+    </v-app-bar-nav-icon> 
             <v-toolbar-title class="text-uppercase black--text">
             
               
@@ -13,7 +24,32 @@
                 <span>{{property}}</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <a style="text-decoration: none;" href="/"> <v-btn text color="black"  >  Home</v-btn></a>
+           
+            </v-toolbar-content>
+        </v-toolbar>
+    </v-card> -->
+
+
+    
+    <v-toolbar  dense
+  elevation="10"
+  flat
+  outlined
+  prominent
+  rounded
+  shaped>
+  
+          
+    
+     <v-app-bar-nav-icon style="align-items: center;margin-left: 50px;">
+            <v-img class="mr-3"  src="/storage/images/others/logo.png"  height="80" width="80"> 
+            </v-img>
+     </v-app-bar-nav-icon>
+      <v-toolbar-title  style="align-self: center">{{property}}</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <a style="text-decoration: none;" href="/"> <v-btn text color="black"  >  Home</v-btn></a>
                 
             <div v-for="item in menues" :key="item.id" link>
                 <router-link style="text-decoration: none;" data-toggle="collapse" :to="{
@@ -25,8 +61,15 @@
                     <v-btn text color="black">{{ item.name }}</v-btn>
                 </router-link>
             </div>
-        </v-toolbar>
-    </nav>
+             <router-link style="text-decoration: none;" data-toggle="collapse" :to="{
+                 name: 'auth',
+                }"
+               >
+                    <v-btn text color="black">Login</v-btn>
+                </router-link>
+        <!-- <a style="text-decoration: none;" href="/auth"> <v-btn text color="black"  >  login</v-btn></a> -->
+    </v-toolbar>
+ 
 </template>
 <script>
     export default {
