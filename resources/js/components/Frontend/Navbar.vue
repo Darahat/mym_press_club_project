@@ -45,7 +45,7 @@
             <v-img class="mr-3"  src="/storage/images/others/logo.png"  height="80" width="80"> 
             </v-img>
      </v-app-bar-nav-icon>
-      <v-toolbar-title  style="align-self: center">{{property}}</v-toolbar-title>
+      <v-toolbar-title  style="align-self: center">{{property}}  </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -61,12 +61,13 @@
                     <v-btn text color="black">{{ item.name }}</v-btn>
                 </router-link>
             </div>
-             <router-link style="text-decoration: none;" data-toggle="collapse" :to="{
+             <router-link   v-if="!$store.state.user" style="text-decoration: none;" data-toggle="collapse" :to="{
                  name: 'auth',
                 }"
                >
                     <v-btn text color="black">Login</v-btn>
                 </router-link>
+                
         <!-- <a style="text-decoration: none;" href="/auth"> <v-btn text color="black"  >  login</v-btn></a> -->
     </v-toolbar>
  

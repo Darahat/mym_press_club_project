@@ -1,7 +1,7 @@
 <template>
 <v-app>
      <v-card>
-            <navbar></navbar>
+            <navbar ></navbar>
         </v-card>
         <v-container>
             <v-main>
@@ -13,7 +13,9 @@
         </v-container>
         <v-footer class="caption" app inset>
             <div class="px-2">
-                Copyright &copy; &mdash; Your company
+              
+        Created with <span style="color:red">❤</span> by  Didarul Alam Rahat (Web & Mobile App Developer)
+           
             </div>
         </v-footer>
 </v-app>

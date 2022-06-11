@@ -46,7 +46,9 @@ use Carbon\Carbon;
 
             // }
           
-            return Auth::user();
+            $token = $request->user()->createToken($request->name);
+ 
+            return ['token' => $token->plainTextToken];
 
         }
       

@@ -12,8 +12,8 @@
                         <v-card-text>
                             <form ref="form" @submit.prevent="isRegister ? register() : login()">
 
-                                <v-text-field v-model="name" name="name" label="name" type="text"
-                                    placeholder="name" required></v-text-field>
+                                <v-text-field v-model="name" name="name" label="name" type="text" placeholder="name"
+                                    required></v-text-field>
 
                                 <v-text-field v-model="password" name="password" label="Password" type="password"
                                     placeholder="password" required></v-text-field>
@@ -70,19 +70,21 @@
                     password
                 } = this;
                 console.log(name + "logged in")
-                 
+
                 var formData = new FormData();
                 formData.append('name', name);
                 formData.append('password', password);
+
                 axios.post('api/customLogin', formData)
                     .then((response) => {
-                     if(response.data = 'Success'){
-                        // router.push(`/user/${username}`)
-                     }
-                        console.log(response.data);
-                        this.snackbar = true;
-                        this.message = "Success";
-                        console.log(this.snackbar);
+
+
+                        this.$store.dispatch('setToken', response.data.token)
+                        this.$store.dispatch('setUser', name)
+                        this.$store.dispatch('isUserLoggedIn', true)
+                        this.$router.push({
+                            name: 'bannerList'
+                        })
                     }).catch(function (error) {
 
                         alert(error);
@@ -93,26 +95,26 @@
                     this.isRegister = false;
                     this.errorMessage = "";
                     const {
-                    name
-                } = this;
-                const {
-                    password
-                } = this;
-                console.log(name + "logged in")
-             
-                var formData = new FormData();
-                formData.append('name', name);
-                formData.append('password', password);
-                axios.post('api/customRegistration', formData)
-                    .then((response) => {
-                        console.log(response.data);
-                        this.snackbar = true;
-                        this.message = "Success";
-                        console.log(this.snackbar);
-                    }).catch(function (error) {
+                        name
+                    } = this;
+                    const {
+                        password
+                    } = this;
+                    console.log(name + "logged in")
 
-                        alert(error);
-                    });
+                    var formData = new FormData();
+                    formData.append('name', name);
+                    formData.append('password', password);
+                    axios.post('api/customRegistration', formData)
+                        .then((response) => {
+                            console.log(response.data);
+                            this.snackbar = true;
+                            this.message = "Success";
+                            console.log(this.snackbar);
+                        }).catch(function (error) {
+
+                            alert(error);
+                        });
                     this.$refs.form.reset();
                 } else {
                     this.errorMessage = "password did not match"

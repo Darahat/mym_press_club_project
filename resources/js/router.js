@@ -9,7 +9,7 @@ import Details from './pages/Details.vue';
 import BannerEditForm from './pages/Backend/BannerEditForm.vue';
 import MenuForm from './pages/Backend/MenuAddForm.vue';
 import DetailsPageOne from './pages/Frontend/DetailsPageOne.vue';
-
+import store from './store'
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -28,21 +28,25 @@ const router = new VueRouter({
             path: '/bannerList',
             name: 'bannerList',
             component: BannerList,
-            meta: { layout: 'Admin' },
+            meta: { layout: 'Admin',
+            isUserLoggedIn: true,
+        },
         },
         
         {
             path: '/bannerEditForm',
             name: 'bannerEditForm',
             component: BannerEditForm,
-            meta: { layout: 'Admin' },
-        },
+            meta: { layout: 'Admin',
+            isUserLoggedIn: true,
+        }},
         {
             path: '/bannerform',
             name: 'bannerForm',
             component: BannerForm,
-            meta: { layout: 'Admin' },
-        },
+            meta: { layout: 'Admin',
+            isUserLoggedIn: true,
+        }},
         {
             path: '/pages/:token',
             name: 'detailsPageOne',
@@ -57,7 +61,9 @@ const router = new VueRouter({
             path: '/menuform',
             name: 'menuForm',
             component: MenuForm,
-            meta: { layout: 'Admin' },
+            meta: { layout: 'Admin',
+            isUserLoggedIn: true,
+        },
         },
         
         // {
@@ -88,5 +94,20 @@ const router = new VueRouter({
 
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.isUserLoggedIn)) {
+      // this route requires auth, check if logged in
+      // if not, redirect to login page.
+    //   alert(record.meta.isUserLoggedIn);
+      if (!store.state.isUserLoggedIn) {
+        next({ name: 'auth' })
+      } else {
+        next() // go to wherever I'm going
+      }
+    } else {
+      next() // does not require auth, make sure to always call next()!
+    }
+  })
 
 export default router;
